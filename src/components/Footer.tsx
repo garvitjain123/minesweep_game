@@ -21,8 +21,8 @@ export function Footer(props : {
             width: "100%",
             height: `${Height}px`,
             zIndex: `${zIndex}`,
-            position: "static",
-            bottom : "0px"
+            position: "fixed",
+            bottom : "0"
             
         },
         F_area : {

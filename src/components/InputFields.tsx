@@ -17,6 +17,7 @@ export function InputFields(props: {
         statusRef,
         setMines,
         mineCount,
+        gridLength,
         setgridLength,
         setgridHeight,
         setmineCount,
@@ -55,21 +56,26 @@ export function InputFields(props: {
     }
 
     const mineChangehandler = (e: any) => {
-        const value = e.target.valueAsNumber;
+        let value = e.target.valueAsNumber;
         if(isNaN(value)){
             return
         }
         const maxValue = (parseInt(gridRef.current.value)) * (parseInt(gridRef.current.value))
-        if(value <  minGrid || value >= maxValue){
+        const gridCount = isNaN(gridRef.current.value) ? minGrid: gridRef.current.valueAsNumber
+
+        if(value <  minGrid){
             statusRef.current.innerText = `Please choose mines between ${minGrid} and ${maxValue}.`
-        } else{
-            const gridCount = isNaN(gridRef.current.value) ? minGrid: gridRef.current.valueAsNumber
-            setmineCount(value)
-            setgridHeight(gridCount)
-            setgridLength( gridCount)
-            setMines(generateMines(gridCount*gridCount, parseInt(mineRef.current.value)))
-            setMineHit(false)
+            value = minGrid;
+        }else if(value >= maxValue){
+            statusRef.current.innerText = `Please choose mines between ${minGrid} and ${maxValue}.`
+            value = maxValue - 1 ;
         }
+        setmineCount(value)
+        setgridHeight(gridCount)
+        setgridLength(gridCount)
+        setMines(generateMines(gridCount*gridCount, value))
+        setMineHit(false)
+        e.target.value = value;
     }
 
     const styles : {
@@ -95,7 +101,7 @@ export function InputFields(props: {
         <div className="inputFields" style={styles.inputStyles}>
             <div>
                 <label htmlFor="dimensions">Grid Dimensions : </label>
-                <input ref={gridRef} onChange={gridChangeHandler} style={styles.input} name="dimensions" type="number" defaultValue={3} min={minGrid} max={maxGrid}/>
+                <input ref={gridRef} onChange={gridChangeHandler} style={styles.input} name="dimensions" type="number" defaultValue={gridLength} min={minGrid} max={maxGrid}/>
             </div>
 
             <div>

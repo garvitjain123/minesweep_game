@@ -92,7 +92,6 @@ export function GameArea(props : {
 
     const getGrid = (x: number, y: number, mines: (Boolean | number)[]) => {
         const rows: JSX.Element[] = [];
-        console.log(mines)
         for(let i = 0 ; i < x * y ; i++) {
             let content : string | null = typeof mines[i] !== `boolean` ? mines[i].toString() : mineHit === true ? "x" : null; 
             rows.push(
