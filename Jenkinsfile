@@ -1,4 +1,7 @@
 pipeline {
+    triggers {
+        pollSCM('') // Enabling being build on Push
+    }
     agent {
         docker { 
             image 'node:16.13.1-alpine' 
