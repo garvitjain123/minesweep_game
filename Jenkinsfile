@@ -1,14 +1,14 @@
 pipeline {
-  agent {
-    docker {
-      image 'docker:latest'
-      args '-u root'
-    }
-  }
+  agent any
   stages {
     stage('Build and Run') {
       steps {
-        sh 'docker run hello-world'
+        script {
+          docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+            sh 'docker pull hello-world'
+            sh 'docker run hello-world'
+          }
+        }
       }
     }
   }
