@@ -1,15 +1,12 @@
 pipeline {
-  agent any
-  stages {
-    stage('Build and Run') {
-      steps {
-        script {
-          docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
-            sh 'docker pull hello-world'
-            sh 'docker run hello-world'
-          }
-        }
-      }
+    agent {
+        docker { image 'node:16.13.1-alpine' }
     }
-  }
+    stages {
+        stage('Test') {
+            steps {
+                sh 'node --version'
+            }
+        }
+    }
 }
