@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-               bash -c 'docker exec node-container node --version'
+               sh 'docker exec node-container node --version'
             }
         }
     }
