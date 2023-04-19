@@ -5,7 +5,7 @@ pipeline {
     agent {
         docker { 
             image 'node:16.13.1-alpine' 
-            args '--name node-container'
+            args '--name node-container -v /tmp:/out'
         }
     }
     stages {
@@ -27,13 +27,18 @@ pipeline {
             steps {
                sh 'node -e "console.log(\'hello $PRINTOUT_NAME\')";'
                sh 'echo "test here we are" > test.txt'
-               stash includes: '**', name: 'test', useDefaultExcludes: false
+               dir("/tmp") {
+                stash includes: '**', name: 'test', useDefaultExcludes: false
+               }
             }
         }
         stage('Lopside'){
             steps{
-                unstash 'test'
-                sh 'test.txt'
+                dir("/tmp")
+                {
+                    unstash 'test'
+                }
+                sh 'cat test.txt'
                  archiveArtifacts(artifacts: '*', fingerprint: true)
             }
         }
