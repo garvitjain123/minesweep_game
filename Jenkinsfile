@@ -42,6 +42,17 @@ pipeline {
                 archiveArtifacts(artifacts: '*', fingerprint: true)
             }
         }
+        post {
+            always {
+              archiveArtifacts(artifacts: '*', fingerprint: true)
+            }
+            success {
+               sh 'Pipeline Success'
+            }
+            failure {
+                    mail to: garvit.jain@highskyit.com, subject: 'The Pipeline failed :('
+            }
+          }
     }
     environment {
      PRINTOUT_NAME = 'ello There'
