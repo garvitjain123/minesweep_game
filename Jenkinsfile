@@ -26,7 +26,15 @@ pipeline {
         stage('Test') {
             steps {
                sh 'node -e "console.log(\'hello $PRINTOUT_NAME\')";'
+               sh 'echo "test here we are" > test.txt
+               stash includes: '**', name: 'test', useDefaultExcludes: false
                archiveArtifacts(artifacts: '*', fingerprint: true)
+            }
+        }
+        stage('Lopside'){
+            steps{
+                unstash 'test'
+                sh 'test.txt'
             }
         }
     }
