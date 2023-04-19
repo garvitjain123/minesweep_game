@@ -11,9 +11,12 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-               sh 'node -e "console.log(\'hello wobvjjujbrld\')";'
+               sh 'node -e "console.log(\'hello $PRINTOUT_NAME\')";'
                archiveArtifacts(artifacts: '*', fingerprint: true)
             }
         }
     }
+    environment {
+     PRINTOUT_NAME = 'ello There'
+  }
 }
