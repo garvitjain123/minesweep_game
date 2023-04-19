@@ -14,6 +14,7 @@ pipeline {
             steps{
                 parallel(
                     Test1: {
+                        input 'Pipeline has paused and needs your input before proceeding'
                         echo "This is branch $TEST1_NAME"
                     },
                     Test2: {
