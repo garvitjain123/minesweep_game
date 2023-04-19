@@ -14,7 +14,7 @@ pipeline {
             steps{
                 parallel(
                     Test1: {
-                        input (message: "Continue pipeline: ok: "Yes, Please" abort:"Nope, leave it")
+                        input (message: "Continue pipeline", ok: "Yes, Please", abort:"Nope, leave it")
                         echo "This is branch $TEST1_NAME"
                     },
                     Test2: {
