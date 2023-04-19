@@ -9,14 +9,19 @@ pipeline {
         }
     }
     stages {
-        parallel(
-        Test1: {
-            echo "This is branch $TEST1_NAME"
-        },
-        Test2: {
-            echo "This is branch $TEST2_NAME"
+        stage('Parallel - test')
+        {
+            steps{
+                parallel(
+                    Test1: {
+                        echo "This is branch $TEST1_NAME"
+                    },
+                    Test2: {
+                        echo "This is branch $TEST2_NAME"
+                    }
+                )
+            }
         }
-        )
         stage('Test') {
             steps {
                sh 'node -e "console.log(\'hello $PRINTOUT_NAME\')";'
