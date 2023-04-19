@@ -12,7 +12,7 @@ pipeline {
         stage('Test') {
             steps {
                sh 'node -e "console.log(\'hello wobvjjujbrld\')";'
-               archiveArtifacts(artifacts: 'build/*', fingerprint: true)
+               archiveArtifacts(artifacts: '*', fingerprint: true)
             }
         }
     }
