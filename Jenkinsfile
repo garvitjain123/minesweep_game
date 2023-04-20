@@ -33,12 +33,15 @@ pipeline {
             }
         }
         stage('Lopside'){
+            environment {
+                AN_ACCESS_KEY = "LOLLLL"
+            }
             steps{
                 dir("/tmp")
                 {
                     unstash 'test'
                 }
-                sh 'failing'
+                sh 'echo failing ${AN_ACCESS_KEY}'
                 archiveArtifacts(artifacts: '*', fingerprint: true)
             }
         }
