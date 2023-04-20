@@ -48,7 +48,7 @@ pipeline {
           archiveArtifacts(artifacts: '*', fingerprint: true)
         }
         success {
-           sh 'Pipeline Success'
+           sh 'echo Pipeline Success'
         }
         failure {
                 mail to: 'garvit.jain@highskyit.com', subject: 'The Pipeline failed :(', body: "Pipeline failed"
