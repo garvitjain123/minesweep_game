@@ -51,7 +51,7 @@ pipeline {
            sh 'echo Pipeline Success'
         }
         failure {
-                mail to: 'garvit.jain@highskyit.com', subject: 'The Pipeline failed :(', body: "Pipeline failed"
+           mail bcc: '', body: 'Pipeline failed yes', cc: '', from: '', replyTo: '', subject: 'Lol Pipeline failed', to: 'garvit.jain@highskyit.com'
         }
     } 
     environment {
