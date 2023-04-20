@@ -25,7 +25,7 @@ pipeline {
         }
         stage('Init') {
             steps {
-                slackSend channel: '@gjain', color: 'black', iconEmoji: 'flag-in', message: 'yeah science'
+                slackSend channel: '@gjain', color: 'black', iconEmoji: 'flag-in', message: 'yeah science', botUser: false
             }
         }
         stage('Test') {
