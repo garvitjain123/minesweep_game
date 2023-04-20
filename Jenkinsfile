@@ -25,7 +25,7 @@ pipeline {
         }
         stage('Init') {
             steps {
-                slackSend channel: '@gjain', color: 'white', iconEmoji: 'deadpool', message: 'Lol what is up'
+                slackSend botUser: true, channel: '@gjain', color: 'black', iconEmoji: 'flag-in', message: 'hello-world', tokenCredentialId: 'slack-bot-token', username: 'testing-jenkins'
             }
         }
         stage('Test') {
