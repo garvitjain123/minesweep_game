@@ -38,7 +38,7 @@ pipeline {
                 {
                     unstash 'test'
                 }
-                sh 'cat test.txt'
+                sh 'failing'
                 archiveArtifacts(artifacts: '*', fingerprint: true)
             }
         }
