@@ -25,7 +25,7 @@ pipeline {
         }
         stage('Init') {
             steps {
-                slackSend (color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+                slackSend (message: "What is up bitches!")
             }
         }
         stage('Test') {
