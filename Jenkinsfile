@@ -51,7 +51,7 @@ pipeline {
            sh 'Pipeline Success'
         }
         failure {
-                mail to: 'garvit.jain@highskyit.com', subject: 'The Pipeline failed :('
+                mail to: 'garvit.jain@highskyit.com', subject: 'The Pipeline failed :(', body: "Pipeline failed"
         }
     } 
     environment {
