@@ -23,11 +23,12 @@ pipeline {
                 )
             }
         }
-        stage('Test') {
+        stage('Init') {
             steps {
-              // send build started notifications
-              slackSend (color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+                slackSend (color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
             }
+        }
+        stage('Test') {
             steps {
                sh 'node -e "console.log(\'hello $PRINTOUT_NAME\')";'
                sh 'echo "test here we are" > test.txt'
